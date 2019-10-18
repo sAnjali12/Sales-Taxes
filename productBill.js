@@ -2,33 +2,26 @@ const express = require('express');
 const app = express();
 var mysql = require('mysql');
 app.use(express.json())
+var knex = require('./conection.js');
 
-var knex = require('knex')({
-    client: 'mysql',
-    connection: {
-      host : '127.0.0.1',
-      user : 'root',
-      password : 'navgurukul',
-      database : 'SalesTaxProject'
-    }
-})
 // console.log('database is connected now!');
 
 
 app.post('/product',(req,res)=>{
+    var stages = ["book","medicine","food"]
     var obj={Product:req.body.Product,price:req.body.price,Country:req.body.Country,stage:req.body.stage}
-    if(["book","medicine","food"].includes(obj.stage)&&["India"].includes(obj.Country)){
+    if(stages.hasOwnProperty((obj.stage))&&("India").hasOwnProperty(obj.Country)){
         obj.SalesTaxes=0.00;
         Total=obj.price
         obj.totalPrice=Total
 
-    }else if(["book","medicine","food"].includes(obj.stage) && (["OtherCountry"].includes(obj.Country))){
-        obj.SalesTaxes=5.00;
-        tax=obj.price*obj.SalesTaxes/100;
-        obj.SalesTaxes=tax
-        obj.totalPrice=tax+obj.price;
+    // }else if(["book","medicine","food"].includes(obj.stage) && (["OtherCountry"].includes(obj.Country))){
+    //     obj.SalesTaxes=5.00;
+    //     tax=obj.price*obj.SalesTaxes/100;
+    //     obj.SalesTaxes=tax
+    //     obj.totalPrice=tax+obj.price;
 
-    }else if(["general"].includes(obj.stage)&&(["India"].includes(obj.Country))){
+    }if(["general"].includes(obj.stage)&&("India").includes(obj.Country)){
         obj.SalesTaxes=10.00;
         tax=obj.price*obj.SalesTaxes/100;
         obj.SalesTaxes=tax
