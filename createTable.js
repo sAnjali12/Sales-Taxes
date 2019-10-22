@@ -14,12 +14,12 @@ var knex = require('knex')({
 })
 console.log('database is connected now!');
 
-knex.schema.createTable('productsBill', (table) => {
+knex.schema.createTable('products', (table) => {
       table.increments('No')
-      table.string('Product')
+      table.string('name')
       table.string('imported')
       table.string('category')
-      table.float('Price')
+      table.float('price')
       // table.float('Tax')
       // table.float('TotalPrice')
     }).then(() => console.log("table created"))
