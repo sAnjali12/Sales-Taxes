@@ -27,3 +27,23 @@ knex.schema.createTable('products', (table) => {
       .finally(() => {
           knex.destroy();
     });
+
+
+
+
+// FOR CART TABLE...
+
+knex.schema.createTable('Cart', (table) => {
+  table.increments('No')
+  table.string('productName')
+  table.string('imported')
+  table.string('quantity')
+  table.float('price')
+  // table.float('Tax')
+  // table.float('TotalPrice')
+}).then(() => console.log("table created"))
+  .catch((err) => { console.log(err); throw err })
+  .finally(() => {
+      knex.destroy();
+});
+
