@@ -20,8 +20,8 @@ knex.schema.createTable('productsBill', (table) => {
       table.string('imported')
       table.string('category')
       table.float('Price')
-      table.float('Tax')
-      table.float('TotalPrice')
+      // table.float('Tax')
+      // table.float('TotalPrice')
     }).then(() => console.log("table created"))
       .catch((err) => { console.log(err); throw err })
       .finally(() => {
