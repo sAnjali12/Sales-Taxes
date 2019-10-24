@@ -1,6 +1,6 @@
 const express = require('express');
 var cart = express.product();
-product.use(express.json())
+cart.use(express.json())
 const add = require("../Modle/product");
 
 
@@ -8,9 +8,10 @@ cart.get("/:name/:quantity",function(req,res){
     productName = req.params.name;
     productQuantity = req.params.quantity;
     let resp  = add.selectData(productQuantity)
+    res.send(resp);
 
-    let postData = add.selectData(productName,productQuantity)
-    console.log('DATA POST.....')
+    // let postData = add.selectData(productName,productQuantity)
+    // console.log('DATA POST.....')
 
 
 })
