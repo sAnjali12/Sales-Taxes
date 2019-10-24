@@ -2,10 +2,11 @@ const express = require('express');
 const app = express();
 var productBill = require('./Routes/product');
 
+// var cartProducts = require('./Routes/cartProducts');
 app.use("/product",productBill);
 
-
-
+var cartProducts = require('./Routes/cartProducts');
+app.use("/cartProducts",cartProducts)
 
 
 

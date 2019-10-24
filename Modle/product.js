@@ -9,7 +9,7 @@ let insertData = (productDetails)=>{
 
 
 let selectData = (productName)=>{
-    knex.select('*').from('products').where('name',productName)
+    return knex.select('*').from('products').where('name',productName)
 
 
 
