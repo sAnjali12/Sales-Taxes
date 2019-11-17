@@ -2,20 +2,19 @@ function getTax(price,tax){
     return price*tax/100
 }
 
-let calculate = (productDetails)=>{
-    var salseTax=0;
-    if(productDetails.imported){
-        salseTax+=getTax(productDetails["Price"],5);
-    }
-    if(!categories.includes(productDetails.category)){
-        salseTax+=getTax(productDetails["Price"],10);
-    }
-   
-    productDetails["Tax"]=salseTax
-    productDetails["TotalPrice"]=productDetails["Price"]+salseTax
 
-    return productDetails;
+let salesTax = (product)=>{
+    categoreis=["book","food","medicine"]
+    var tax=0.0
+    if(product.imported){
+        tax=tax+getTax(product["quantityPrice"],5)
 
+    }if(!categoreis.includes(product["category"])){
+        tax=tax+getTax(product["quantityPrice"],10)
+    }
+
+    product["tax"]=tax
+    product["priceWithtax"]=product["quantityPrice"]+tax
+    return product;
 }
-
-module.exports = calculate;
+module.exports=salesTax
